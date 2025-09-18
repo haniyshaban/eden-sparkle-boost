@@ -16,7 +16,7 @@ const buttonVariants = cva(
         "glass-primary": "glass bg-primary/10 border-primary/30 text-primary hover:bg-primary/20 hover:border-primary hover:scale-105 glow-hover",
         
         // Hero Button
-        hero: "bg-gradient-primary text-primary-foreground hover:shadow-glow hover:scale-110 px-8 py-4 text-lg font-semibold rounded-full pulse-glow",
+        hero: "bg-gradient-primary text-primary-foreground hover:shadow-glow hover:scale-110 px-8 py-4 text-lg font-semibold rounded-full",
         
         // Interactive Variants
         glow: "bg-primary/20 border border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-glow hover:scale-105",

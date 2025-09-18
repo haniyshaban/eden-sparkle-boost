@@ -53,7 +53,7 @@ export const HeroSection = () => {
       <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
         {/* Animated Badge */}
         <div className="inline-flex items-center gap-2 glass-nav mb-8 animate-fade-in-up">
-          <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+          <Sparkles className="w-4 h-4 text-primary" />
           <span className="text-sm font-medium text-foreground-muted">
             Pioneering the Future of Technology
           </span>
@@ -62,7 +62,7 @@ export const HeroSection = () => {
         {/* Main Heading with Morphing Text */}
         <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 animate-fade-in-up animate-delay-200">
           Navigate the{" "}
-          <span className="gradient-text inline-block animate-pulse">
+          <span className="gradient-text inline-block transition-all duration-500">
             {words[currentWordIndex]}
           </span>
         </h1>
@@ -116,7 +116,7 @@ export const HeroSection = () => {
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse" />
+          <div className="w-1 h-3 bg-primary rounded-full mt-2" />
         </div>
       </div>
     </section>
