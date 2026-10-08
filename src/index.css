@@ -1,91 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Eden Labs Design System - Futuristic & Interactive */
+/* Eden Labs design system - calm paper and ink, with a sage accent taken from the logo */
 @layer base {
   :root {
-    /* Core Background System */
-    --background: 220 27% 4%;
-    --background-secondary: 220 25% 6%;
-    --background-tertiary: 220 23% 8%;
-    --foreground: 210 40% 98%;
-    --foreground-muted: 210 20% 75%;
+    /* Core palette */
+    --paper: 75 18% 96%;        /* #F5F6F2 page background */
+    --surface: 0 0% 100%;       /* #FFFFFF raised surfaces */
+    --tint: 110 15% 92%;        /* #E9EEE8 soft sage panels */
+    --ink: 120 5% 7%;           /* #121412 text, buttons, dark band */
+    --ink-raised: 120 5% 12%;   /* #1D201D hover on ink */
+    --graphite: 103 4% 35%;     /* #575C55 secondary text */
+    --line: 82 11% 86%;         /* #DDE0D8 hairlines */
+    --sage: 141 16% 36%;        /* #4D6A57 accent */
+    --sage-light: 135 16% 71%;  /* #A9C1AF accent on dark */
 
-    /* Glass Morphism System */
-    --glass: 220 25% 8%;
-    --glass-border: 220 40% 15%;
-    --glass-foreground: 210 40% 95%;
+    /* Tokens used by existing components */
+    --background: var(--paper);
+    --background-secondary: var(--surface);
+    --background-tertiary: var(--tint);
+    --foreground: var(--ink);
+    --foreground-muted: var(--graphite);
 
-    /* Brand Colors - Emerald/Teal Palette */
-    --primary: 160 84% 39%;
-    --primary-glow: 158 90% 45%;
-    --primary-soft: 155 85% 35%;
-    --primary-foreground: 220 27% 4%;
+    --glass: var(--surface);
+    --glass-border: var(--line);
+    --glass-foreground: var(--ink);
 
-    /* Secondary Brand Colors */
-    --secondary: 220 25% 10%;
-    --secondary-glow: 220 30% 15%;
-    --secondary-foreground: 210 40% 90%;
+    --primary: var(--ink);
+    --primary-glow: var(--ink-raised);
+    --primary-soft: var(--graphite);
+    --primary-foreground: var(--paper);
 
-    /* Accent System */
-    --accent: 180 100% 50%;
-    --accent-glow: 180 100% 60%;
-    --accent-foreground: 220 27% 4%;
+    --secondary: var(--tint);
+    --secondary-glow: var(--line);
+    --secondary-foreground: var(--ink);
 
-    /* Interactive States */
-    --hover: 160 70% 45%;
-    --active: 160 90% 35%;
+    --accent: var(--sage);
+    --accent-glow: var(--sage);
+    --accent-foreground: var(--paper);
 
-    /* Semantic Colors */
-    --success: 142 76% 36%;
-    --warning: 38 92% 50%;
-    --error: 0 84% 60%;
-    --info: 217 91% 60%;
+    --hover: var(--ink-raised);
+    --active: var(--ink);
 
-    /* Border & Input System */
-    --border: 220 25% 12%;
-    --border-accent: 160 84% 39%;
-    --input: 220 25% 8%;
-    --ring: 160 84% 39%;
+    --success: 142 40% 34%;
+    --warning: 38 80% 42%;
+    --error: 0 65% 48%;
+    --info: 210 45% 40%;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(160 84% 39%), hsl(158 90% 45%));
-    --gradient-secondary: linear-gradient(135deg, hsl(220 25% 6%), hsl(220 30% 12%));
-    --gradient-glass: linear-gradient(135deg, hsl(220 25% 8% / 0.8), hsl(220 30% 12% / 0.6));
-    --gradient-glow: radial-gradient(circle at 50% 50%, hsl(160 84% 39% / 0.3), transparent 70%);
-    --gradient-mesh: conic-gradient(from 0deg at 50% 50%, hsl(160 84% 39% / 0.1), hsl(180 100% 50% / 0.1), hsl(160 84% 39% / 0.1));
+    --border: var(--line);
+    --input: var(--line);
+    --ring: var(--sage);
 
-    /* Shadows & Glows */
-    --shadow-glow: 0 0 50px hsl(160 84% 39% / 0.5);
-    --shadow-glass: 0 8px 32px hsl(220 25% 4% / 0.5);
-    --shadow-card: 0 4px 24px hsl(220 25% 4% / 0.3);
-    --shadow-hover: 0 12px 48px hsl(160 84% 39% / 0.3);
-
-    /* Typography Scale */
-    --text-hero: 4rem;
-    --text-xl: 2.5rem;
-    --text-lg: 1.5rem;
-    --text-base: 1rem;
-    --text-sm: 0.875rem;
-
-    /* Spacing & Layout */
     --radius: 1rem;
     --radius-sm: 0.5rem;
-    --radius-lg: 1.5rem;
-
-    /* Animations */
-    --duration-fast: 150ms;
-    --duration-normal: 300ms;
-    --duration-slow: 500ms;
-    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --radius-lg: 1.75rem;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -95,55 +68,109 @@
   }
 
   body {
-    @apply bg-background text-foreground font-inter antialiased;
-    background-image: var(--gradient-mesh);
-    background-attachment: fixed;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: 17px;
+    line-height: 1.6;
     min-height: 100vh;
   }
 
-  /* Typography Base */
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight;
+  h1, h2, h3, h4 {
+    @apply font-normal;
+    letter-spacing: -0.02em;
   }
 
-  h1 {
-    @apply text-6xl md:text-7xl lg:text-8xl;
+  ::selection {
+    background: hsl(var(--sage) / 0.2);
   }
 
-  h2 {
-    @apply text-4xl md:text-5xl;
+  :focus-visible {
+    outline: 2px solid hsl(var(--sage));
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 
-  h3 {
-    @apply text-2xl md:text-3xl;
-  }
-
-  /* Scrollbar Styling */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: hsl(var(--background-secondary));
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary));
-    border-radius: 3px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary-glow));
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
 @layer components {
-  /* Glass Morphism Components */
+  .page {
+    @apply mx-auto w-full max-w-6xl px-6;
+  }
+
+  .heading-xl {
+    text-wrap: balance;
+    font-size: clamp(2.75rem, 6.4vw, 5.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    @apply font-light;
+  }
+
+  .heading-lg {
+    text-wrap: balance;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    @apply font-light;
+  }
+
+  .btn {
+    @apply inline-flex h-12 items-center justify-center rounded-full px-6 text-[15px] font-medium transition-colors duration-200;
+  }
+
+  .btn-sm {
+    @apply h-10 px-5 text-sm;
+  }
+
+  .btn-ink {
+    @apply btn bg-ink text-paper hover:bg-ink-raised;
+  }
+
+  .btn-paper {
+    @apply btn bg-paper text-ink hover:bg-surface;
+  }
+
+  .btn-outline {
+    @apply btn border border-ink/20 text-ink hover:border-ink;
+  }
+
+  .text-link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
+    text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+    transition: text-decoration-color 0.2s;
+  }
+
+  .text-link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  /* The Eden mark, drawn from the logo as a mask so it can take any colour */
+  .eden-mark {
+    display: inline-block;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    flex-shrink: 0;
+  }
+
+  /* One calm entrance: the mark grows open from its centre */
+  .eden-grow {
+    animation: eden-grow 2.2s cubic-bezier(0.22, 0.8, 0.24, 1) both;
+  }
+
+  /* Kept so older markup still renders sensibly */
   .glass {
-    background: var(--gradient-glass);
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid hsl(var(--glass-border));
-    box-shadow: var(--shadow-glass);
+    background: hsl(var(--surface));
+    border: 1px solid hsl(var(--line));
   }
 
   .glass-card {
@@ -154,135 +181,28 @@
     @apply glass rounded-full px-6 py-3;
   }
 
-  /* Glow Effects */
-  .glow-primary {
-    box-shadow: var(--shadow-glow);
-  }
-
-  .glow-hover {
-    transition: box-shadow var(--duration-normal) var(--ease-smooth);
-  }
-
-  .glow-hover:hover {
-    box-shadow: var(--shadow-hover);
-  }
-
-  /* Interactive Cards */
-  .interactive-card {
-    @apply glass-card transition-all duration-300 hover:scale-105 cursor-pointer;
-    transform-origin: center;
-  }
-
-  .interactive-card:hover {
-    background: linear-gradient(135deg, hsl(var(--glass) / 0.9), hsl(var(--primary) / 0.1));
-    border-color: hsl(var(--primary));
-    box-shadow: var(--shadow-hover);
-  }
-
-  /* Gradient Text */
   .gradient-text {
-    background: var(--gradient-primary);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* Floating Animation */
-  .float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .float-delayed {
-    animation: float 6s ease-in-out infinite 2s;
-  }
-
-  /* Pulse Glow Animation - Disabled */
-  .pulse-glow {
-    /* animation: pulse-glow 3s ease-in-out infinite; */
-  }
-
-  /* Grid Pattern Background */
-  .grid-pattern {
-    background-image: 
-      linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
+    color: hsl(var(--ink));
   }
 }
 
 @layer utilities {
-  /* Animation Keyframes */
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-20px) rotate(1deg); }
-    66% { transform: translateY(-10px) rotate(-1deg); }
-  }
-
-  @keyframes pulse-glow {
-    0%, 100% { 
-      box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
-    }
-    50% { 
-      box-shadow: 0 0 40px hsl(var(--primary) / 0.8), 0 0 60px hsl(var(--primary) / 0.6);
-    }
-  }
-
-  @keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  @keyframes fade-in-up {
+  @keyframes eden-grow {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      clip-path: circle(0% at 47% 47%);
+      transform: rotate(-12deg) scale(0.96);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      clip-path: circle(75% at 47% 47%);
+      transform: rotate(0deg) scale(1);
     }
   }
 
-  @keyframes scale-in {
-    from {
-      opacity: 0;
-      transform: scale(0.8);
+  @media (prefers-reduced-motion: reduce) {
+    .eden-grow {
+      animation: none;
     }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  /* Animation Utilities */
-  .animate-gradient {
-    animation: gradient-shift 8s ease infinite;
-    background-size: 200% 200%;
-  }
-
-  .animate-fade-in-up {
-    animation: fade-in-up 0.8s ease-out forwards;
-  }
-
-  .animate-scale-in {
-    animation: scale-in 0.6s ease-out forwards;
-  }
-
-  /* Stagger Animation Delays */
-  .animate-delay-100 { animation-delay: 0.1s; }
-  .animate-delay-200 { animation-delay: 0.2s; }
-  .animate-delay-300 { animation-delay: 0.3s; }
-  .animate-delay-400 { animation-delay: 0.4s; }
-  .animate-delay-500 { animation-delay: 0.5s; }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
   }
 }

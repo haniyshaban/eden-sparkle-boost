@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { EdenMark } from "@/components/EdenMark";
 
 const NotFound = () => {
   const location = useLocation();
@@ -9,12 +10,13 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+    <div className="flex min-h-screen items-center justify-center bg-background px-6">
       <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-gray-600">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 underline hover:text-blue-700">
-          Return to Home
+        <EdenMark className="mx-auto h-16 w-16 text-sage" />
+        <h1 className="heading-lg mt-8 text-ink">This page doesn't exist.</h1>
+        <p className="mt-4 text-graphite">The link may be old or mistyped.</p>
+        <a href="/" className="btn-ink mt-8">
+          Go to the home page
         </a>
       </div>
     </div>

@@ -1,99 +1,98 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { EdenMark } from "@/components/EdenMark";
+import { CALENDAR_LINK } from "@/lib/site";
+
+const navItems = [
+  { name: "Services", href: "/#services", isRoute: false },
+  { name: "GuardSync", href: "/guardsync", isRoute: true },
+  { name: "Process", href: "/#process", isRoute: false },
+  { name: "Contact", href: "/#contact", isRoute: false },
+];
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 12);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "Services", href: "#services" },
-    { name: "About", href: "#about" },
-    { name: "Process", href: "#process" },
-    { name: "Contact", href: "#contact" },
-  ];
+  const solid = isScrolled || isMenuOpen;
+  const linkClass = "transition-colors hover:text-ink";
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "py-4" : "py-6"
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        solid ? "border-line bg-paper/90 backdrop-blur-md" : "border-transparent bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-6">
-        <nav className={`glass-nav transition-all duration-300 ${
-          isScrolled ? "glass" : "bg-glass/30"
-        }`}>
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">E</span>
-              </div>
-              <span className="text-xl font-bold gradient-text">Eden Labs</span>
-            </div>
+      <div className="page flex h-16 items-center justify-between md:h-20">
+        <Link to="/" className="flex items-center gap-2.5" aria-label="Eden Labs home">
+          <EdenMark className="h-9 w-9 text-sage" />
+          <span className="text-[17px] font-medium tracking-tight text-ink">Eden Labs</span>
+        </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-foreground-muted hover:text-primary transition-colors duration-300 hover:scale-105"
-                >
-                  {item.name}
-                </a>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <div className="hidden md:block">
-              <Button variant="glass-primary" size="lg" className="font-semibold">
-                Get Started
-              </Button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X /> : <Menu />}
-            </Button>
-          </div>
-
-          {/* Mobile Menu */}
-          {isMobileMenuOpen && (
-            <div className="md:hidden mt-4 pt-4 border-t border-glass-border animate-fade-in-up">
-              <div className="flex flex-col space-y-4">
-                {navItems.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="text-foreground-muted hover:text-primary transition-colors duration-300"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
-                ))}
-                <Button variant="glass-primary" className="w-full mt-4">
-                  Get Started
-                </Button>
-              </div>
-            </div>
+        <nav className="hidden items-center gap-9 text-[15px] text-graphite md:flex">
+          {navItems.map((item) =>
+            item.isRoute ? (
+              <Link key={item.name} to={item.href} className={linkClass}>
+                {item.name}
+              </Link>
+            ) : (
+              <a key={item.name} href={item.href} className={linkClass}>
+                {item.name}
+              </a>
+            ),
           )}
+          <a href={CALENDAR_LINK} target="_blank" rel="noreferrer" className="btn-ink btn-sm">
+            Book a call
+          </a>
         </nav>
+
+        <button
+          type="button"
+          className="-mr-2 p-2 text-ink md:hidden"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-expanded={isMenuOpen}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        >
+          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
+
+      {isMenuOpen && (
+        <nav className="page flex flex-col pb-6 md:hidden">
+          {navItems.map((item) =>
+            item.isRoute ? (
+              <Link
+                key={item.name}
+                to={item.href}
+                className="border-b border-line py-3 text-lg text-ink"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <a
+                key={item.name}
+                href={item.href}
+                className="border-b border-line py-3 text-lg text-ink"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </a>
+            ),
+          )}
+          <a href={CALENDAR_LINK} target="_blank" rel="noreferrer" className="btn-ink mt-6">
+            Book a call
+          </a>
+        </nav>
+      )}
     </header>
   );
 };

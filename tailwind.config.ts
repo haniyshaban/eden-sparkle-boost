@@ -14,9 +14,26 @@ export default {
     },
     extend: {
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
+        sans: ['"Hanken Grotesk"', "ui-sans-serif", "system-ui", "sans-serif"],
+        // "font-inter" is used in App.tsx; it now maps to the site font
+        inter: ['"Hanken Grotesk"', "ui-sans-serif", "system-ui", "sans-serif"],
       },
       colors: {
+        /* Eden palette */
+        paper: "hsl(var(--paper))",
+        surface: "hsl(var(--surface))",
+        tint: "hsl(var(--tint))",
+        ink: {
+          DEFAULT: "hsl(var(--ink))",
+          raised: "hsl(var(--ink-raised))",
+        },
+        graphite: "hsl(var(--graphite))",
+        line: "hsl(var(--line))",
+        sage: {
+          DEFAULT: "hsl(var(--sage))",
+          light: "hsl(var(--sage-light))",
+        },
+
         /* Core System */
         background: {
           DEFAULT: "hsl(var(--background))",
@@ -74,36 +91,6 @@ export default {
         md: "var(--radius)",
         sm: "var(--radius-sm)",
       },
-      backgroundImage: {
-        "gradient-primary": "var(--gradient-primary)",
-        "gradient-secondary": "var(--gradient-secondary)", 
-        "gradient-glass": "var(--gradient-glass)",
-        "gradient-glow": "var(--gradient-glow)",
-        "gradient-mesh": "var(--gradient-mesh)",
-      },
-      boxShadow: {
-        glow: "var(--shadow-glow)",
-        glass: "var(--shadow-glass)",
-        card: "var(--shadow-card)",
-        hover: "var(--shadow-hover)",
-      },
-      animation: {
-        "float": "float 6s ease-in-out infinite",
-        "float-delayed": "float 6s ease-in-out infinite 2s",
-        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
-        "gradient": "gradient-shift 8s ease infinite",
-        "fade-in-up": "fade-in-up 0.8s ease-out forwards",
-        "scale-in": "scale-in 0.6s ease-out forwards",
-      },
-      transitionTimingFunction: {
-        "smooth": "var(--ease-smooth)",
-        "bounce": "var(--ease-bounce)",
-      },
-      transitionDuration: {
-        "fast": "var(--duration-fast)",
-        "normal": "var(--duration-normal)", 
-        "slow": "var(--duration-slow)",
-      }
     },
   },
   plugins: [require("tailwindcss-animate")],

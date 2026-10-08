@@ -68,7 +68,7 @@ export const StatsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 relative overflow-hidden">
+    <section ref={sectionRef} id="about" className="py-32 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 grid-pattern opacity-30" />
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-glow rounded-full blur-3xl opacity-20" />
@@ -124,25 +124,7 @@ export const StatsSection = () => {
           ))}
         </div>
 
-        {/* Achievement Highlights */}
-        <div className="mt-20 glass-card max-w-4xl mx-auto text-center">
-          <h3 className="text-2xl font-bold mb-6">Recent Achievements</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-foreground-muted">ISO 27001 Certified</span>
-            </div>
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-foreground-muted">AWS Partner Network</span>
-            </div>
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-foreground-muted">Microsoft Gold Partner</span>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </section>
   );
