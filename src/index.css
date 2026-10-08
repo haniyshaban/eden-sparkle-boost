@@ -187,6 +187,20 @@
 }
 
 @layer utilities {
+  /* Line that fills above the active screenshot feature while it auto-plays */
+  .showcase-progress {
+    animation: showcase-progress 5s linear both;
+  }
+
+  @keyframes showcase-progress {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
   @keyframes eden-grow {
     from {
       opacity: 0;

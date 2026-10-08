@@ -2,10 +2,19 @@ import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CALENDAR_LINK, EMAIL } from "@/lib/site";
+import { PhoneShowcase, WebShowcase, type Screen } from "@/components/Showcase";
 
 /* ─────────────────────────────── Lightbox ─────────────────────────────── */
 
-const Lightbox = ({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) => {
+const Lightbox = ({
+  src,
+  alt,
+  onClose,
+}: {
+  src: string;
+  alt: string;
+  onClose: () => void;
+}) => {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
@@ -49,21 +58,6 @@ const FeatureList = ({ title, items }: { title: string; items: string[] }) => (
   </div>
 );
 
-/** Clickable phone screenshot */
-const Phone = ({ src, label, onOpen }: { src: string; label: string; onOpen: () => void }) => (
-  <figure>
-    <button
-      type="button"
-      onClick={onOpen}
-      className="block w-full cursor-zoom-in overflow-hidden rounded-[1.1rem] border-[3px] border-ink bg-ink"
-      aria-label={`Enlarge ${label} screenshot`}
-    >
-      <img src={src} alt={label} className="aspect-[1/2.12] w-full object-cover" loading="lazy" />
-    </button>
-    <figcaption className="mt-2 text-center text-sm text-graphite">{label}</figcaption>
-  </figure>
-);
-
 const SectionIntro = ({
   kicker,
   title,
@@ -80,11 +74,80 @@ const SectionIntro = ({
   </div>
 );
 
-const ADMIN_TABS = [
-  { key: "overview", label: "Overview", src: "/images/guardsync/admin-1.png" },
-  { key: "live-map", label: "Live map", src: "/images/guardsync/admin-2.png" },
-  { key: "guards", label: "Guards", src: "/images/guardsync/admin-3.png" },
-  { key: "sites", label: "Sites", src: "/images/guardsync/admin-4.png" },
+const IMG = "/images/guardsync";
+
+const ADMIN_SCREENS: Screen[] = [
+  {
+    title: "Command center",
+    desc: "Guards, sites, attendance and alerts at a glance, updated live.",
+    src: `${IMG}/admin-1.png`,
+  },
+  {
+    title: "Live map",
+    desc: "Every guard and site on one map, with status and movement trails.",
+    src: `${IMG}/admin-2.png`,
+  },
+  {
+    title: "Guard management",
+    desc: "Search, filter and open any guard's record, shift and clock status.",
+    src: `${IMG}/admin-3.png`,
+  },
+  {
+    title: "Sites and geofences",
+    desc: "Set up sites, assign guards and set the boundary they work within.",
+    src: `${IMG}/admin-4.png`,
+  },
+];
+
+const GUARD_SCREENS: Screen[] = [
+  {
+    title: "Home",
+    desc: "Today's shift, hours this week and quick actions on one screen.",
+    src: `${IMG}/mobile-1.png`,
+  },
+  {
+    title: "Face check-in",
+    desc: "A face scan on every clock-in, so nobody can clock in for someone else.",
+    src: `${IMG}/mobile-3.png`,
+  },
+  {
+    title: "Patrol mode",
+    desc: "A route map with GPS checkpoints, and progress as each point is checked.",
+    src: `${IMG}/mobile-6.png`,
+  },
+  {
+    title: "Schedule",
+    desc: "Upcoming day and night shifts, with the site for each one.",
+    src: `${IMG}/mobile-7.png`,
+  },
+  {
+    title: "Leave",
+    desc: "Request leave and follow each request through to approval.",
+    src: `${IMG}/mobile-8.png`,
+  },
+  {
+    title: "Profile and payslips",
+    desc: "Personal details, documents, schedule and payslips.",
+    src: `${IMG}/mobile-2.png`,
+  },
+];
+
+const OFFICER_SCREENS: Screen[] = [
+  {
+    title: "Dashboard",
+    desc: "Clock in and out, a live work timer, and what is waiting for approval.",
+    src: `${IMG}/mobile-4.png`,
+  },
+  {
+    title: "Conveyance approvals",
+    desc: "Review guards' requests to leave their post, and approve or deny in one tap.",
+    src: `${IMG}/mobile-9.png`,
+  },
+  {
+    title: "Field reports",
+    desc: "Record a voice note or video from the site and send it to the office.",
+    src: `${IMG}/mobile-5.png`,
+  },
 ];
 
 const VALUE_PROPS = [
@@ -117,36 +180,57 @@ const VALUE_PROPS = [
 /* ──────────────────────────────── page ──────────────────────────────── */
 
 const GuardSync = () => {
-  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
-  const [adminTab, setAdminTab] = useState(ADMIN_TABS[0].key);
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(
+    null,
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const open = (src: string, alt: string) => setLightbox({ src, alt });
-  const activeTab = ADMIN_TABS.find((t) => t.key === adminTab) ?? ADMIN_TABS[0];
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      {lightbox && <Lightbox src={lightbox.src} alt={lightbox.alt} onClose={() => setLightbox(null)} />}
+      {lightbox && (
+        <Lightbox
+          src={lightbox.src}
+          alt={lightbox.alt}
+          onClose={() => setLightbox(null)}
+        />
+      )}
 
       <main className="pb-24 pt-32 md:pt-40">
         {/* ── HERO ── */}
-        <section className="page grid items-center gap-12 lg:grid-cols-2">
+        <section className="page grid items-center gap-12 lg:grid-cols-[5fr_7fr]">
           <div>
-            <p className="text-[15px] text-sage">By Eden Labs</p>
-            <h1 className="heading-xl mt-3 text-ink">GuardSync</h1>
+            <h1 className="heading-xl flex items-center gap-[0.22em] text-ink">
+              <img
+                src="/images/guardsync/guardsync-mark.svg"
+                alt=""
+                className="h-[0.82em] w-[0.82em] shrink-0"
+              />
+              GuardSync
+            </h1>
+            <p className="mt-3 text-[15px] text-sage">By Eden Labs</p>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-graphite md:text-xl">
-              Security guard management in three apps: a web dashboard for admins, and Android apps for guards
-              and field officers.
+              Security guard management in three apps: a web dashboard for
+              admins, and Android apps for guards and field officers.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
-              <a href={CALENDAR_LINK} target="_blank" rel="noreferrer" className="btn-ink">
+              <a
+                href={CALENDAR_LINK}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-ink"
+              >
                 Book a demo
               </a>
-              <a href={`mailto:${EMAIL}?subject=GuardSync`} className="text-link text-[15px] text-ink">
+              <a
+                href={`mailto:${EMAIL}?subject=GuardSync`}
+                className="text-link text-[15px] text-ink"
+              >
                 Email us
               </a>
             </div>
@@ -165,18 +249,20 @@ const GuardSync = () => {
             </dl>
           </div>
 
-          <div className="rounded-[1.75rem] bg-tint px-6 py-10 sm:px-10">
+          <div className="rounded-[1.75rem] bg-tint px-5 py-10 sm:px-8 sm:py-14">
             <img
               src="/images/guardsync/hero-mockup.png"
-              alt="GuardSync admin dashboard on a laptop, with the guard and officer apps on two phones"
-              className="mx-auto w-full max-w-xl select-none"
+              alt="GuardSync admin dashboard in a browser window, with the guard and officer apps on two phones"
+              className="mx-auto w-full select-none"
             />
           </div>
         </section>
 
         {/* ── VALUE PROPS ── */}
         <section className="page mt-28">
-          <h2 className="heading-lg max-w-xl text-ink">Total visibility, no gaps.</h2>
+          <h2 className="heading-lg max-w-xl text-ink">
+            Total visibility, no gaps.
+          </h2>
           <div className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {VALUE_PROPS.map((v) => (
               <div key={v.title} className="border-t border-line pt-5">
@@ -193,39 +279,19 @@ const GuardSync = () => {
             kicker="Admin dashboard, on the web"
             title="Run your whole operation from one screen."
           >
-            Supervisors get live visibility, guard management, attendance records, payroll data and emergency
-            alerts, all in one place.
+            Supervisors get live visibility, guard management, attendance
+            records, payroll data and emergency alerts, all in one place.
           </SectionIntro>
 
-          <div className="mt-10">
-            <div className="flex gap-6 border-b border-line" role="tablist" aria-label="Dashboard screens">
-              {ADMIN_TABS.map((t) => (
-                <button
-                  key={t.key}
-                  role="tab"
-                  aria-selected={adminTab === t.key}
-                  onClick={() => setAdminTab(t.key)}
-                  className={`-mb-px border-b-2 pb-3 text-[15px] transition-colors ${
-                    adminTab === t.key
-                      ? "border-ink text-ink"
-                      : "border-transparent text-graphite hover:text-ink"
-                  }`}
-                >
-                  {t.label}
-                </button>
-              ))}
-            </div>
-            <button
-              type="button"
-              className="mt-6 block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-line bg-surface"
-              onClick={() => open(activeTab.src, `Admin dashboard: ${activeTab.label}`)}
-              aria-label={`Enlarge ${activeTab.label} screenshot`}
-            >
-              <img src={activeTab.src} alt={`Admin dashboard: ${activeTab.label}`} className="w-full" />
-            </button>
+          <div className="mt-12">
+            <WebShowcase
+              screens={ADMIN_SCREENS}
+              windowTitle="GuardSync Admin"
+              onOpen={open}
+            />
           </div>
 
-          <div className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             <FeatureList
               title="Live operations"
               items={[
@@ -279,128 +345,133 @@ const GuardSync = () => {
 
         {/* ── GUARD APP ── */}
         <section className="page mt-28">
-          <SectionIntro kicker="Guard app, on Android" title="Everything a guard needs, in their pocket.">
-            Face check-in, patrol tracking, SOS, leave requests and basic offline support, in an app built for
-            security guards.
+          <SectionIntro
+            kicker="Guard app, on Android"
+            title="Everything a guard needs, in their pocket."
+          >
+            Face check-in, patrol tracking, SOS, leave requests and basic
+            offline support, in an app built for security guards.
           </SectionIntro>
 
-          <div className="mt-12 grid items-start gap-12 lg:grid-cols-[1fr_auto]">
-            <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
-              <FeatureList
-                title="Login and face enrolment"
-                items={[
-                  "Employee login",
-                  "One-time face registration",
-                  "Face check-in and check-out",
-                  "Live shift timer",
-                ]}
-              />
-              <FeatureList
-                title="Transport mode"
-                items={[
-                  "Switch to commute or transport mode",
-                  "Submit conveyance requests",
-                  "Track approval status",
-                  "Cancel pending requests",
-                ]}
-              />
-              <FeatureList
-                title="Wake alerts"
-                items={[
-                  "Regular proof-of-life checks",
-                  "120 second face re-check window",
-                  "Missed checks logged for supervisors",
-                ]}
-              />
-              <FeatureList
-                title="Patrol mode"
-                items={[
-                  "Route map with live position",
-                  "Automatic GPS checkpoints",
-                  "Progress and timestamps",
-                  "Map and list views",
-                ]}
-              />
-              <FeatureList
-                title="SOS and leave"
-                items={[
-                  "One-tap SOS with live GPS",
-                  "Leave requests and status",
-                  "Profile, schedule and payslips",
-                  "Basic offline support",
-                ]}
-              />
-            </div>
+          <div className="mt-12">
+            <PhoneShowcase
+              screens={GUARD_SCREENS}
+              appName="Guard app"
+              onOpen={open}
+            />
+          </div>
 
-            <div className="grid grid-cols-3 gap-4 sm:mx-auto sm:w-[26rem] lg:w-[25rem]">
-              {[
-                { src: "/images/guardsync/mobile-1.png", label: "Home" },
-                { src: "/images/guardsync/mobile-2.png", label: "Profile" },
-                { src: "/images/guardsync/mobile-3.png", label: "Face check-in" },
-              ].map((m) => (
-                <Phone
-                  key={m.src}
-                  src={m.src}
-                  label={m.label}
-                  onOpen={() => open(m.src, `Guard app: ${m.label}`)}
-                />
-              ))}
-            </div>
+          <div className="mt-16 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            <FeatureList
+              title="Login and face enrolment"
+              items={[
+                "Employee login",
+                "One-time face registration",
+                "Face check-in and check-out",
+                "Live shift timer",
+              ]}
+            />
+            <FeatureList
+              title="Transport mode"
+              items={[
+                "Switch to commute or transport mode",
+                "Submit conveyance requests",
+                "Track approval status",
+                "Cancel pending requests",
+              ]}
+            />
+            <FeatureList
+              title="Wake alerts"
+              items={[
+                "Regular proof-of-life checks",
+                "120 second face re-check window",
+                "Missed checks logged for supervisors",
+              ]}
+            />
+            <FeatureList
+              title="Patrol mode"
+              items={[
+                "Route map with live position",
+                "Automatic GPS checkpoints",
+                "Progress and timestamps",
+                "Map and list views",
+              ]}
+            />
+            <FeatureList
+              title="SOS and leave"
+              items={[
+                "One-tap SOS with live GPS",
+                "Leave requests and status",
+                "Profile, schedule and payslips",
+                "Basic offline support",
+              ]}
+            />
           </div>
         </section>
 
         {/* ── OFFICER APP ── */}
         <section className="page mt-28">
-          <SectionIntro kicker="Field officer app, on Android" title="Tools for officers on the ground.">
-            Field officers clock in, approve conveyance requests and send audio or video reports straight from
-            the site.
+          <SectionIntro
+            kicker="Field officer app, on Android"
+            title="Tools for officers on the ground."
+          >
+            Field officers clock in, approve conveyance requests and send audio
+            or video reports straight from the site.
           </SectionIntro>
 
-          <div className="mt-12 grid items-start gap-12 lg:grid-cols-[auto_1fr]">
-            <div className="grid grid-cols-2 gap-4 sm:mx-auto sm:w-[18rem] lg:w-[18rem]">
-              {[
-                { src: "/images/guardsync/mobile-4.png", label: "Dashboard" },
-                { src: "/images/guardsync/mobile-5.png", label: "Field reports" },
-              ].map((m) => (
-                <Phone
-                  key={m.src}
-                  src={m.src}
-                  label={m.label}
-                  onOpen={() => open(m.src, `Officer app: ${m.label}`)}
-                />
-              ))}
-            </div>
+          <div className="mt-12">
+            <PhoneShowcase
+              screens={OFFICER_SCREENS}
+              appName="Officer app"
+              onOpen={open}
+              flip
+            />
+          </div>
 
-            <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
-              <FeatureList
-                title="Dashboard"
-                items={["Clock in and out by shift type", "Live work timer", "Sites visited and pending"]}
-              />
-              <FeatureList
-                title="Conveyance approvals"
-                items={["Review guard conveyance requests", "Approve or reject in one tap"]}
-              />
-              <FeatureList
-                title="Field reporting"
-                items={[
-                  "Record audio and video in the app",
-                  "Add a title and notes",
-                  "Upload progress",
-                  "Full submission history",
-                ]}
-              />
-            </div>
+          <div className="mt-16 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            <FeatureList
+              title="Dashboard"
+              items={[
+                "Clock in and out by shift type",
+                "Live work timer",
+                "Sites visited and pending",
+              ]}
+            />
+            <FeatureList
+              title="Conveyance approvals"
+              items={[
+                "Review guard conveyance requests",
+                "Approve or reject in one tap",
+              ]}
+            />
+            <FeatureList
+              title="Field reporting"
+              items={[
+                "Record audio and video in the app",
+                "Add a title and notes",
+                "Upload progress",
+                "Full submission history",
+              ]}
+            />
           </div>
         </section>
 
         {/* ── CTA ── */}
         <section className="page mt-28">
           <div className="rounded-[1.75rem] bg-tint px-8 py-14 sm:px-14 md:py-20">
-            <h2 className="heading-lg max-w-xl text-ink">See GuardSync in action.</h2>
+            <h2 className="heading-lg max-w-xl text-ink">
+              See GuardSync in action.
+            </h2>
             <p className="mt-5 max-w-md leading-relaxed text-graphite">
-              Book a demo and we'll walk you through the dashboard and both apps.
+              Book a demo and we'll walk you through the dashboard and both
+              apps.
             </p>
-            <a href={CALENDAR_LINK} target="_blank" rel="noreferrer" className="btn-ink mt-9">
+            <a
+              href={CALENDAR_LINK}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-ink mt-9"
+            >
               Book a demo
             </a>
           </div>
