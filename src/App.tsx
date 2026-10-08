@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import GuardSync from "./pages/GuardSync";
 import GuardSyncPrivacy from "./pages/GuardSyncPrivacy";
 import NotFound from "./pages/NotFound";
+import { ScrollManager } from "./components/ScrollManager";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollManager />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/guardsync" element={<GuardSync />} />

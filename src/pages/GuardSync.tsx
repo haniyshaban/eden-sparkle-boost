@@ -185,10 +185,6 @@ const GuardSync = () => {
     null,
   );
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const open = (src: string, alt: string) => setLightbox({ src, alt });
 
   return (

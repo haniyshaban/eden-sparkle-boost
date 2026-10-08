@@ -8,8 +8,7 @@ export const HeroSection = () => {
         <div className="md:col-span-7">
           <h1 className="heading-xl text-ink">Software that grows with your business.</h1>
           <p className="mt-8 max-w-[34rem] text-lg leading-relaxed text-graphite md:text-xl">
-            Eden Labs designs and builds web apps, mobile apps and AI tools. We also make GuardSync, a
-            platform for running security teams.
+            Eden Labs designs and builds web apps, mobile apps and AI tools.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
             <a href={CALENDAR_LINK} target="_blank" rel="noreferrer" className="btn-ink">

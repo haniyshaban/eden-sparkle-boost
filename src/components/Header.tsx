@@ -5,10 +5,10 @@ import { EdenMark } from "@/components/EdenMark";
 import { CALENDAR_LINK } from "@/lib/site";
 
 const navItems = [
-  { name: "Services", href: "/#services", isRoute: false },
-  { name: "GuardSync", href: "/guardsync", isRoute: true },
-  { name: "Process", href: "/#process", isRoute: false },
-  { name: "Contact", href: "/#contact", isRoute: false },
+  { name: "Services", href: "/#services" },
+  { name: "GuardSync", href: "/guardsync" },
+  { name: "Process", href: "/#process" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export const Header = () => {
@@ -38,17 +38,11 @@ export const Header = () => {
         </Link>
 
         <nav className="hidden items-center gap-9 text-[15px] text-graphite md:flex">
-          {navItems.map((item) =>
-            item.isRoute ? (
-              <Link key={item.name} to={item.href} className={linkClass}>
-                {item.name}
-              </Link>
-            ) : (
-              <a key={item.name} href={item.href} className={linkClass}>
-                {item.name}
-              </a>
-            ),
-          )}
+          {navItems.map((item) => (
+            <Link key={item.name} to={item.href} className={linkClass}>
+              {item.name}
+            </Link>
+          ))}
           <a href={CALENDAR_LINK} target="_blank" rel="noreferrer" className="btn-ink btn-sm">
             Book a call
           </a>
@@ -67,27 +61,16 @@ export const Header = () => {
 
       {isMenuOpen && (
         <nav className="page flex flex-col pb-6 md:hidden">
-          {navItems.map((item) =>
-            item.isRoute ? (
-              <Link
-                key={item.name}
-                to={item.href}
-                className="border-b border-line py-3 text-lg text-ink"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ) : (
-              <a
-                key={item.name}
-                href={item.href}
-                className="border-b border-line py-3 text-lg text-ink"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ),
-          )}
+          {navItems.map((item) => (
+            <Link
+              key={item.name}
+              to={item.href}
+              className="border-b border-line py-3 text-lg text-ink"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.name}
+            </Link>
+          ))}
           <a href={CALENDAR_LINK} target="_blank" rel="noreferrer" className="btn-ink mt-6">
             Book a call
           </a>

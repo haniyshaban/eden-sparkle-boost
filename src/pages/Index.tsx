@@ -25,8 +25,8 @@ const Index = () => {
       <main>
         <HeroSection />
         <ServicesSection />
-        <GuardSyncFeature />
         <ProcessSection />
+        <GuardSyncFeature />
         <ContactSection />
       </main>
       <Footer />

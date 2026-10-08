@@ -6,7 +6,7 @@ export const GuardSyncFeature = () => {
       <div className="page">
         <div className="grid items-center overflow-hidden rounded-[1.75rem] bg-tint md:grid-cols-2">
           <div className="p-8 sm:p-12 md:p-14">
-            <h2 className="heading-lg text-ink">We also make GuardSync</h2>
+            <h2 className="heading-lg text-ink">We built GuardSync</h2>
             <p className="mt-6 max-w-md leading-relaxed text-graphite">
               GuardSync helps security companies run their teams. Admins get a web dashboard, and guards and
               field officers get Android apps. Live locations, face check-in, patrols, SOS alerts and reports
