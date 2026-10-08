@@ -15,8 +15,8 @@ const template = readFileSync(join(dist, "index.html"), "utf8");
 const { render } = await import(pathToFileURL(resolve("dist-ssr/entry-server.js")).href);
 
 const HOME = {
-  title: "Eden Labs - Software that grows with your business",
-  description: "Eden Labs designs and builds web apps, mobile apps and AI tools, and makes GuardSync.",
+  title: "Eden Labs - Custom software development and AI deployment",
+  description: "Eden Labs builds custom enterprise software and deploys AI for growing businesses, at a lower cost, with training and support included. IT and AI consulting, and digital transformation.",
   image: `${SITE}/og-image.jpg`,
 };
 
@@ -50,9 +50,9 @@ const pages = [
   {
     route: "/guardsync",
     file: "guardsync/index.html",
-    title: "GuardSync by Eden Labs - Security guard management",
+    title: "GuardSync - Guard management app for security companies | Eden Labs",
     description:
-      "Run your security team from one place: a web dashboard for admins, and Android apps for guards and field officers. Live locations, face check-in, patrols and SOS alerts.",
+      "GuardSync is a guard management app for security companies: attendance with face check-in, live guard location, patrols, payroll data and SOS alerts in one place.",
     image: `${SITE}/og-guardsync.jpg`,
     priority: "0.9",
     // The largest thing on screen when this page opens: start downloading it straight away
@@ -66,7 +66,7 @@ const pages = [
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web, Android",
         description:
-          "Security guard management in three apps: a web dashboard for admins, and Android apps for guards and field officers. Live locations, face check-in, patrols, SOS alerts and reports in one place.",
+          "A guard management app for security companies: a web dashboard for admins, and Android apps for guards and field officers. Attendance with face check-in, live guard location, patrols, payroll data and SOS alerts in one place.",
         url: `${SITE}/guardsync/`,
         image: `${SITE}/og-guardsync.jpg`,
         publisher: { "@id": organization["@id"] },

@@ -8,9 +8,9 @@ export const GuardSyncFeature = () => {
           <div className="p-8 sm:p-12 md:p-14">
             <h2 className="heading-lg text-ink">We built GuardSync</h2>
             <p className="mt-6 max-w-md leading-relaxed text-graphite">
-              GuardSync helps security companies run their teams. Admins get a web dashboard, and guards and
-              field officers get Android apps. Live locations, face check-in, patrols, SOS alerts and reports
-              all sit in one place.
+              GuardSync is our own guard management app for security companies. Attendance, live guard
+              location, patrols, payroll data and SOS alerts sit in one place, with a web dashboard for admins
+              and Android apps for guards and field officers.
             </p>
             <Link to="/guardsync" className="btn-outline mt-9">
               See GuardSync

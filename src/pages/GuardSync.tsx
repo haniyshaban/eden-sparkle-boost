@@ -180,7 +180,7 @@ const VALUE_PROPS = [
 /* ──────────────────────────────── page ──────────────────────────────── */
 
 const GuardSync = () => {
-  usePageTitle("GuardSync by Eden Labs - Security guard management");
+  usePageTitle("GuardSync - Guard management app for security companies | Eden Labs");
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(
     null,
   );
@@ -215,8 +215,10 @@ const GuardSync = () => {
             </h1>
             <p className="mt-3 text-[15px] text-sage">By Eden Labs</p>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-graphite md:text-xl">
-              Security guard management in three apps: a web dashboard for
-              admins, and Android apps for guards and field officers.
+              The guard management app for security companies. Attendance, live
+              location, patrols, payroll data and SOS alerts in one place: a web
+              dashboard for admins, and Android apps for guards and field
+              officers.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
               <a
@@ -267,6 +269,10 @@ const GuardSync = () => {
           <h2 className="heading-lg max-w-xl text-ink">
             Total visibility, no gaps.
           </h2>
+          <p className="mt-6 max-w-2xl leading-relaxed text-graphite">
+            GuardSync is one place for employee management across your whole
+            guard force, so you always know who is on site.
+          </p>
           <div className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {VALUE_PROPS.map((v) => (
               <div key={v.title} className="border-t border-line pt-5">
@@ -458,6 +464,43 @@ const GuardSync = () => {
               ]}
             />
           </div>
+        </section>
+
+        {/* GETTING STARTED */}
+        <section className="page mt-28">
+          <SectionIntro kicker="Getting started" title="Up and running, with us beside you.">
+            We set GuardSync up for your company and train your team. You do
+            not need an IT department.
+          </SectionIntro>
+          <ol className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-3">
+            {[
+              {
+                title: "Book a demo",
+                desc: "We walk you through the dashboard and both apps, using your own sites and shifts as the example.",
+              },
+              {
+                title: "We set it up",
+                desc: "Your sites, shifts, guards and officers are configured for the way you operate.",
+              },
+              {
+                title: "Go live with training",
+                desc: "We train your admins, officers and guards, and stay on for support after launch.",
+              },
+            ].map((step, i) => (
+              <li key={step.title} className="border-t border-ink pt-6">
+                <span className="block text-5xl font-light leading-none text-sage" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <h3 className="mt-6 text-xl font-medium text-ink">{step.title}</h3>
+                <p className="mt-3 leading-relaxed text-graphite">{step.desc}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-12 max-w-2xl border-t border-line pt-6 leading-relaxed text-graphite">
+            <span className="font-medium text-ink">Pricing.</span> It depends on the size of your guard force,
+            and we aim to cost less than other guard management tools. Tell us how many guards you have and
+            we will send a quote.
+          </p>
         </section>
 
         {/* ── CTA ── */}
