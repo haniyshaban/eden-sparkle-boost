@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { CALENDAR_LINK, EMAIL } from "@/lib/site";
+import { CALENDAR_LINK, EMAIL, usePageTitle } from "@/lib/site";
 import { PhoneShowcase, WebShowcase, type Screen } from "@/components/Showcase";
 
 /* ─────────────────────────────── Lightbox ─────────────────────────────── */
@@ -180,6 +180,7 @@ const VALUE_PROPS = [
 /* ──────────────────────────────── page ──────────────────────────────── */
 
 const GuardSync = () => {
+  usePageTitle("GuardSync by Eden Labs - Security guard management");
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(
     null,
   );

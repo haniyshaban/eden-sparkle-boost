@@ -11,11 +11,16 @@ export const Footer = () => {
         <div className="flex flex-col gap-6 border-t border-paper/15 py-10 text-sm sm:flex-row sm:items-center sm:justify-between">
           <Link to="/" className="flex items-center gap-2.5 text-paper">
             <EdenMark className="h-7 w-7 text-sage-light" />
-            <span className="text-base font-medium tracking-tight">Eden Labs</span>
+            <span className="text-base font-medium tracking-tight">
+              Eden Labs
+            </span>
           </Link>
 
           <nav className="flex flex-wrap gap-x-7 gap-y-2">
-            <Link to="/guardsync" className="transition-colors hover:text-paper">
+            <Link
+              to="/guardsync"
+              className="transition-colors hover:text-paper"
+            >
               GuardSync
             </Link>
             <a
@@ -26,9 +31,18 @@ export const Footer = () => {
             >
               LinkedIn
             </a>
-            <a href={`mailto:${EMAIL}`} className="transition-colors hover:text-paper">
+            <a
+              href={`mailto:${EMAIL}`}
+              className="transition-colors hover:text-paper"
+            >
               Email
             </a>
+            <Link
+              to="/guardsync/privacy"
+              className="transition-colors hover:text-paper"
+            >
+              GuardSync privacy
+            </Link>
           </nav>
 
           <p>© {year} Eden Labs</p>

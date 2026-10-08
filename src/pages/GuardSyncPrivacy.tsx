@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { EMAIL, usePageTitle } from "@/lib/site";
 
 const sections = [
   {
@@ -9,11 +10,19 @@ const sections = [
     title: "Introduction",
     content: (
       <p className="text-foreground/70 leading-relaxed">
-        Black Belt - GuardSync ("GuardSync," "we," "our," or "us") provides workforce management tools
-        for security operations, including an Admin Console, Guard App, and Staff App.
-        <br /><br />
-        This Privacy Policy explains what personal data we collect, how we use it, who we share it with,
-        how long we keep it, and what rights users may have.
+        GuardSync is a workforce management product for security operations,
+        made by Eden Labs ("GuardSync," "we," "our," or "us"). It includes an
+        Admin Console, a Guard App, and a Field Officer (Staff) App.
+        <br />
+        <br />
+        This policy also covers versions of GuardSync that Eden Labs provides
+        to client organizations under their own name, such as Black Belt -
+        GuardSync.
+        <br />
+        <br />
+        This Privacy Policy explains what personal data we collect, how we use
+        it, who we share it with, how long we keep it, and what rights users may
+        have.
       </p>
     ),
   },
@@ -23,7 +32,9 @@ const sections = [
     title: "Scope",
     content: (
       <>
-        <p className="text-foreground/70 leading-relaxed mb-4">This Privacy Policy applies to:</p>
+        <p className="text-foreground/70 leading-relaxed mb-4">
+          This Privacy Policy applies to:
+        </p>
         <ul className="space-y-2">
           {[
             "Guard App users (security guards)",
@@ -31,7 +42,10 @@ const sections = [
             "Admin Console users (administrators)",
             "Organizations using GuardSync",
           ].map((item) => (
-            <li key={item} className="flex items-start gap-3 text-foreground/70">
+            <li
+              key={item}
+              className="flex items-start gap-3 text-foreground/70"
+            >
               <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sage shrink-0" />
               {item}
             </li>
@@ -46,7 +60,9 @@ const sections = [
     title: "Information We Collect",
     content: (
       <div className="space-y-6">
-        <p className="text-foreground/70 leading-relaxed">We collect the following categories of data:</p>
+        <p className="text-foreground/70 leading-relaxed">
+          We collect the following categories of data:
+        </p>
 
         {[
           {
@@ -65,7 +81,9 @@ const sections = [
             label: "B. Biometric and Identity Verification Data",
             items: [
               "Facial descriptor templates used for face verification checks",
-              "Profile photo URL (if provided)",
+              "Profile photo (if provided)",
+              "Government ID numbers and documents your employer asks you to provide (for example Aadhaar or PAN)",
+              "Bank account details used for payroll",
             ],
             note: "We use facial descriptor data to confirm identity during clock-in and random face verification checks. We do not use facial descriptors for purposes unrelated to workforce verification in this app.",
           },
@@ -76,6 +94,11 @@ const sections = [
               "Hours worked",
               "Assigned site and shift information",
               "Face check status (for example: pending, passed, failed, expired)",
+              "Patrol checkpoint logs",
+              "Leave requests and their status",
+              "Conveyance requests (permission to leave an assigned area)",
+              "Responses to wake alerts on night shifts",
+              "Field reports, including any audio or video you record and submit",
             ],
           },
           {
@@ -84,6 +107,7 @@ const sections = [
               "GPS coordinates (latitude, longitude)",
               "Accuracy metadata (if provided)",
               "Time of each location ping",
+              "Location sent with an SOS alert",
             ],
             note: "Location data is recorded during active shifts (for example, periodic updates according to system configuration).",
           },
@@ -103,11 +127,17 @@ const sections = [
             ],
           },
         ].map(({ label, items, note }) => (
-          <div key={label} className="rounded-xl border border-line bg-surface p-5">
+          <div
+            key={label}
+            className="rounded-xl border border-line bg-surface p-5"
+          >
             <h4 className="text-sm font-semibold text-ink mb-3">{label}</h4>
             <ul className="space-y-2 mb-3">
               {items.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-foreground/70 text-sm">
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-foreground/70 text-sm"
+                >
                   <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sage/60 shrink-0" />
                   {item}
                 </li>
@@ -115,7 +145,8 @@ const sections = [
             </ul>
             {note && (
               <p className="text-xs text-foreground/50 border-t border-line pt-3 mt-3 leading-relaxed">
-                <span className="text-ink font-medium">Note: </span>{note}
+                <span className="text-ink font-medium">Note: </span>
+                {note}
               </p>
             )}
           </div>
@@ -129,7 +160,9 @@ const sections = [
     title: "How We Use Information",
     content: (
       <>
-        <p className="text-foreground/70 leading-relaxed mb-4">We use personal data to:</p>
+        <p className="text-foreground/70 leading-relaxed mb-4">
+          We use personal data to:
+        </p>
         <ul className="space-y-2">
           {[
             "Create and manage user accounts",
@@ -137,12 +170,17 @@ const sections = [
             "Process guard enrollment and admin authorization workflows",
             "Verify identity for clock-in and random face checks",
             "Record attendance and generate payroll data",
+            "Run patrols, leave, conveyance and field reporting workflows",
+            "Send SOS alerts, with location, to the organization's administrators",
             "Monitor shift location updates and last known guard location for operations",
             "Detect misuse, prevent fraud, and improve security",
             "Maintain, debug, and improve app performance",
             "Comply with legal obligations",
           ].map((item) => (
-            <li key={item} className="flex items-start gap-3 text-foreground/70">
+            <li
+              key={item}
+              className="flex items-start gap-3 text-foreground/70"
+            >
               <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sage shrink-0" />
               {item}
             </li>
@@ -158,7 +196,8 @@ const sections = [
     content: (
       <>
         <p className="text-foreground/70 leading-relaxed mb-4">
-          Depending on your jurisdiction, we may rely on one or more of the following legal bases:
+          Depending on your jurisdiction, we may rely on one or more of the
+          following legal bases:
         </p>
         <ul className="space-y-2 mb-4">
           {[
@@ -167,15 +206,19 @@ const sections = [
             "Legal obligation",
             "Consent (especially where required for biometric processing)",
           ].map((item) => (
-            <li key={item} className="flex items-start gap-3 text-foreground/70">
+            <li
+              key={item}
+              className="flex items-start gap-3 text-foreground/70"
+            >
               <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sage shrink-0" />
               {item}
             </li>
           ))}
         </ul>
         <p className="text-foreground/70 leading-relaxed text-sm bg-tint border border-sage/20 rounded-lg px-4 py-3">
-          Organizations using GuardSync are responsible for obtaining any employee notices, acknowledgments,
-          or consent required by applicable law.
+          Organizations using GuardSync are responsible for obtaining any
+          employee notices, acknowledgments, or consent required by applicable
+          law.
         </p>
       </>
     ),
@@ -189,7 +232,9 @@ const sections = [
         <p className="text-foreground/70 leading-relaxed mb-4 font-medium">
           We do not sell personal data.
         </p>
-        <p className="text-foreground/70 leading-relaxed mb-4">We may share data:</p>
+        <p className="text-foreground/70 leading-relaxed mb-4">
+          We may share data:
+        </p>
         <ul className="space-y-2">
           {[
             "Within your organization (for example, authorized admins and staff)",
@@ -198,7 +243,10 @@ const sections = [
             "To protect rights, safety, and security of users, organizations, and the public",
             "In connection with a merger, acquisition, or business transfer (subject to applicable safeguards)",
           ].map((item) => (
-            <li key={item} className="flex items-start gap-3 text-foreground/70">
+            <li
+              key={item}
+              className="flex items-start gap-3 text-foreground/70"
+            >
               <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sage shrink-0" />
               {item}
             </li>
@@ -214,10 +262,12 @@ const sections = [
     content: (
       <>
         <p className="text-foreground/70 leading-relaxed mb-4">
-          We retain data for as long as needed to provide services and meet legal, operational, and
-          security requirements.
+          We retain data for as long as needed to provide services and meet
+          legal, operational, and security requirements.
         </p>
-        <p className="text-foreground/70 leading-relaxed mb-4">Current app behavior includes:</p>
+        <p className="text-foreground/70 leading-relaxed mb-4">
+          Current app behavior includes:
+        </p>
         <ul className="space-y-2 mb-4">
           {[
             "Configurable location-data retention window (default set in system configuration)",
@@ -225,14 +275,18 @@ const sections = [
             "Cleanup of older completed or expired face check records",
             "Longer retention of attendance and payroll records where needed for business and compliance purposes",
           ].map((item) => (
-            <li key={item} className="flex items-start gap-3 text-foreground/70">
+            <li
+              key={item}
+              className="flex items-start gap-3 text-foreground/70"
+            >
               <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sage shrink-0" />
               {item}
             </li>
           ))}
         </ul>
         <p className="text-foreground/70 text-sm">
-          Retention periods may vary by organization policy and legal requirements.
+          Retention periods may vary by organization policy and legal
+          requirements.
         </p>
       </>
     ),
@@ -249,19 +303,24 @@ const sections = [
         <ul className="space-y-2 mb-4">
           {[
             "Password hashing",
+            "Encryption of sensitive identity fields, such as government ID numbers",
             "Token-based authentication",
             "Role-based access controls",
             "Rate limiting for sensitive endpoints (such as login)",
             "Database and infrastructure controls suitable for operational security",
           ].map((item) => (
-            <li key={item} className="flex items-start gap-3 text-foreground/70">
+            <li
+              key={item}
+              className="flex items-start gap-3 text-foreground/70"
+            >
               <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sage shrink-0" />
               {item}
             </li>
           ))}
         </ul>
         <p className="text-foreground/60 text-sm">
-          No method of storage or transmission is completely secure. We cannot guarantee absolute security.
+          No method of storage or transmission is completely secure. We cannot
+          guarantee absolute security.
         </p>
       </>
     ),
@@ -272,8 +331,9 @@ const sections = [
     title: "International Transfers",
     content: (
       <p className="text-foreground/70 leading-relaxed">
-        If data is stored or processed in jurisdictions outside your country, we take steps intended
-        to provide appropriate protection as required by applicable law.
+        If data is stored or processed in jurisdictions outside your country, we
+        take steps intended to provide appropriate protection as required by
+        applicable law.
       </p>
     ),
   },
@@ -295,15 +355,20 @@ const sections = [
             "Data portability",
             "Withdraw consent where processing is based on consent",
           ].map((item) => (
-            <li key={item} className="flex items-start gap-3 text-foreground/70">
+            <li
+              key={item}
+              className="flex items-start gap-3 text-foreground/70"
+            >
               <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sage shrink-0" />
               {item}
             </li>
           ))}
         </ul>
         <p className="text-foreground/70 text-sm bg-tint border border-sage/20 rounded-lg px-4 py-3">
-          Requests should be directed to your employer/organization administrator first, or to us using
-          the contact details below where appropriate.
+          Requests should be directed to your employer/organization
+          administrator first, or to us using the contact details below where
+          appropriate. To ask for your account and personal data to be deleted,
+          email us from the address linked to your account.
         </p>
       </>
     ),
@@ -314,7 +379,8 @@ const sections = [
     title: "Children",
     content: (
       <p className="text-foreground/70 leading-relaxed">
-        GuardSync is intended for professional workforce use and is not directed to children.
+        GuardSync is intended for professional workforce use and is not directed
+        to children.
       </p>
     ),
   },
@@ -324,9 +390,10 @@ const sections = [
     title: "Third-Party Services",
     content: (
       <p className="text-foreground/70 leading-relaxed">
-        GuardSync may rely on third-party infrastructure or libraries for hosting, authentication
-        support, analytics, or facial processing capabilities. Their processing is governed by their
-        own policies and contractual terms.
+        GuardSync may rely on third-party infrastructure or libraries for
+        hosting, authentication support, analytics, or facial processing
+        capabilities. Their processing is governed by their own policies and
+        contractual terms.
       </p>
     ),
   },
@@ -336,8 +403,8 @@ const sections = [
     title: "Changes to This Policy",
     content: (
       <p className="text-foreground/70 leading-relaxed">
-        We may update this Privacy Policy from time to time. Updated versions will be posted with a
-        revised "Last Updated" date.
+        We may update this Privacy Policy from time to time. Updated versions
+        will be posted with a revised "Last Updated" date.
       </p>
     ),
   },
@@ -352,11 +419,14 @@ const sections = [
         </p>
         <div className="rounded-xl border border-line bg-surface p-5 space-y-3">
           {[
-            { label: "Privacy Contact", value: "[Add privacy contact name/team]" },
-            { label: "Email", value: "[Add privacy email]" },
-            { label: "Address", value: "[Add company/org address]" },
+            { label: "Privacy Contact", value: "Eden Labs" },
+            { label: "Email", value: EMAIL },
+            { label: "Website", value: "edenlabs.app" },
           ].map(({ label, value }) => (
-            <div key={label} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+            <div
+              key={label}
+              className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3"
+            >
               <span className="text-sm font-medium text-ink w-36 shrink-0">
                 {label}
               </span>
@@ -370,6 +440,7 @@ const sections = [
 ];
 
 const GuardSyncPrivacy = () => {
+  usePageTitle("GuardSync privacy policy - Eden Labs");
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
@@ -377,17 +448,25 @@ const GuardSyncPrivacy = () => {
       <main className="pb-24 pt-32 md:pt-40">
         {/* Title */}
         <section className="page max-w-3xl">
-          <p className="text-[15px] text-sage">Black Belt - GuardSync</p>
+          <p className="text-[15px] text-sage">GuardSync by Eden Labs</p>
           <h1 className="heading-lg mt-3 text-ink">Privacy Policy</h1>
-          <p className="mt-4 text-sm text-graphite">Last updated: March 26, 2026</p>
+          <p className="mt-4 text-sm text-graphite">
+            Last updated: October 9, 2026
+          </p>
         </section>
 
         {/* Content */}
         <div className="page mt-14 max-w-3xl">
           {sections.map((section) => (
-            <section key={section.id} id={section.id} className="scroll-mt-24 border-t border-line py-10">
+            <section
+              key={section.id}
+              id={section.id}
+              className="scroll-mt-24 border-t border-line py-10"
+            >
               <h2 className="flex items-baseline gap-4 text-xl font-medium text-ink">
-                <span className="w-6 shrink-0 font-light text-sage">{section.number}</span>
+                <span className="w-6 shrink-0 font-light text-sage">
+                  {section.number}
+                </span>
                 {section.title}
               </h2>
               <div className="mt-5 sm:pl-10">{section.content}</div>
