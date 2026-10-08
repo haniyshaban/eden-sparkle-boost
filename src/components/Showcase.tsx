@@ -122,7 +122,7 @@ const Stack = ({
       <img
         key={s.src}
         src={s.src}
-        alt={i === index ? `${alt}: ${s.title}` : ""}
+        alt={`${alt}: ${s.title}`}
         aria-hidden={i !== index}
         loading="lazy"
         width={width}

@@ -205,7 +205,8 @@ const GuardSync = () => {
             <h1 className="heading-xl flex items-center gap-[0.22em] text-ink">
               <img
                 src="/images/guardsync/guardsync-mark.svg"
-                alt=""
+                alt="GuardSync logo"
+                aria-hidden="true"
                 width={48}
                 height={48}
                 className="h-[0.82em] w-[0.82em] shrink-0"
