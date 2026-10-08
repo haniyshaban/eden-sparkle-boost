@@ -18,8 +18,10 @@ export const GuardSyncFeature = () => {
           </div>
           <div className="px-6 pb-10 sm:px-12 md:py-12 md:pl-0 md:pr-10">
             <img
-              src="/images/guardsync/hero-mockup.png"
+              src="/images/guardsync/hero-mockup.webp"
               alt="GuardSync admin dashboard in a browser window, with the guard and officer apps on two phones"
+              width={1400}
+              height={1079}
               className="mx-auto w-full max-w-lg"
               loading="lazy"
             />

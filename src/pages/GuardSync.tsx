@@ -80,22 +80,22 @@ const ADMIN_SCREENS: Screen[] = [
   {
     title: "Command center",
     desc: "Guards, sites, attendance and alerts at a glance, updated live.",
-    src: `${IMG}/admin-1.png`,
+    src: `${IMG}/admin-1.webp`,
   },
   {
     title: "Live map",
     desc: "Every guard and site on one map, with status and movement trails.",
-    src: `${IMG}/admin-2.png`,
+    src: `${IMG}/admin-2.webp`,
   },
   {
     title: "Guard management",
     desc: "Search, filter and open any guard's record, shift and clock status.",
-    src: `${IMG}/admin-3.png`,
+    src: `${IMG}/admin-3.webp`,
   },
   {
     title: "Sites and geofences",
     desc: "Set up sites, assign guards and set the boundary they work within.",
-    src: `${IMG}/admin-4.png`,
+    src: `${IMG}/admin-4.webp`,
   },
 ];
 
@@ -103,32 +103,32 @@ const GUARD_SCREENS: Screen[] = [
   {
     title: "Home",
     desc: "Today's shift, hours this week and quick actions on one screen.",
-    src: `${IMG}/mobile-1.png`,
+    src: `${IMG}/mobile-1.webp`,
   },
   {
     title: "Face check-in",
     desc: "A face scan on every clock-in, so nobody can clock in for someone else.",
-    src: `${IMG}/mobile-3.png`,
+    src: `${IMG}/mobile-3.webp`,
   },
   {
     title: "Patrol mode",
     desc: "A route map with GPS checkpoints, and progress as each point is checked.",
-    src: `${IMG}/mobile-6.png`,
+    src: `${IMG}/mobile-6.webp`,
   },
   {
     title: "Schedule",
     desc: "Upcoming day and night shifts, with the site for each one.",
-    src: `${IMG}/mobile-7.png`,
+    src: `${IMG}/mobile-7.webp`,
   },
   {
     title: "Leave",
     desc: "Request leave and follow each request through to approval.",
-    src: `${IMG}/mobile-8.png`,
+    src: `${IMG}/mobile-8.webp`,
   },
   {
     title: "Profile and payslips",
     desc: "Personal details, documents, schedule and payslips.",
-    src: `${IMG}/mobile-2.png`,
+    src: `${IMG}/mobile-2.webp`,
   },
 ];
 
@@ -136,17 +136,17 @@ const OFFICER_SCREENS: Screen[] = [
   {
     title: "Dashboard",
     desc: "Clock in and out, a live work timer, and what is waiting for approval.",
-    src: `${IMG}/mobile-4.png`,
+    src: `${IMG}/mobile-4.webp`,
   },
   {
     title: "Conveyance approvals",
     desc: "Review guards' requests to leave their post, and approve or deny in one tap.",
-    src: `${IMG}/mobile-9.png`,
+    src: `${IMG}/mobile-9.webp`,
   },
   {
     title: "Field reports",
     desc: "Record a voice note or video from the site and send it to the office.",
-    src: `${IMG}/mobile-5.png`,
+    src: `${IMG}/mobile-5.webp`,
   },
 ];
 
@@ -206,6 +206,8 @@ const GuardSync = () => {
               <img
                 src="/images/guardsync/guardsync-mark.svg"
                 alt=""
+                width={48}
+                height={48}
                 className="h-[0.82em] w-[0.82em] shrink-0"
               />
               GuardSync
@@ -248,8 +250,12 @@ const GuardSync = () => {
 
           <div className="rounded-[1.75rem] bg-tint px-5 py-10 sm:px-8 sm:py-14">
             <img
-              src="/images/guardsync/hero-mockup.png"
+              src="/images/guardsync/hero-mockup.webp"
               alt="GuardSync admin dashboard in a browser window, with the guard and officer apps on two phones"
+              width={1400}
+              height={1079}
+              // lowercase on purpose: React 18 does not know the camelCase name
+              {...{ fetchpriority: "high" }}
               className="mx-auto w-full select-none"
             />
           </div>

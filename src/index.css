@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&display=swap');
+/* Hanken Grotesk, served from this site (no render-blocking request to Google Fonts) */
+@import "@fontsource-variable/hanken-grotesk/wght.css";
 
 @tailwind base;
 @tailwind components;

@@ -21,14 +21,10 @@ const useShowcase = (count: number) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-      setAuto(false);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) setAuto(false);
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0.35 },
-    );
+    const io = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.35 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
@@ -37,10 +33,7 @@ const useShowcase = (count: number) => {
 
   useEffect(() => {
     if (!playing) return;
-    const id = window.setInterval(
-      () => setIndex((i) => (i + 1) % count),
-      INTERVAL,
-    );
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % count), INTERVAL);
     return () => window.clearInterval(id);
   }, [playing, count]);
 
@@ -72,9 +65,7 @@ const FeatureTabs = ({
   <div
     role="tablist"
     aria-label={label}
-    className={
-      layout === "row" ? "grid gap-x-8 sm:grid-cols-2 lg:grid-cols-4" : "grid"
-    }
+    className={layout === "row" ? "grid gap-x-8 sm:grid-cols-2 lg:grid-cols-4" : "grid"}
   >
     {screens.map((s, i) => {
       const active = i === index;
@@ -100,7 +91,7 @@ const FeatureTabs = ({
           <span
             className={`block text-[15px] leading-snug text-graphite ${
               layout === "row"
-                ? `mt-1.5 transition-opacity ${active ? "opacity-100" : "opacity-70 group-hover:opacity-100"}`
+                ? "mt-1.5"
                 : `grid transition-all duration-300 ${active ? "mt-1.5 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`
             }`}
           >
@@ -117,10 +108,14 @@ const Stack = ({
   screens,
   index,
   alt,
+  width,
+  height,
 }: {
   screens: Screen[];
   index: number;
   alt: string;
+  width: number;
+  height: number;
 }) => (
   <>
     {screens.map((s, i) => (
@@ -130,6 +125,8 @@ const Stack = ({
         alt={i === index ? `${alt}: ${s.title}` : ""}
         aria-hidden={i !== index}
         loading="lazy"
+        width={width}
+        height={height}
         className={`absolute inset-0 h-full w-full object-cover object-top transition-opacity duration-500 ${
           i === index ? "opacity-100" : "opacity-0"
         }`}
@@ -140,13 +137,7 @@ const Stack = ({
 
 /* ─────────────────────────────── frames ─────────────────────────────── */
 
-const Glass = ({
-  className = "",
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) => (
+const Glass = ({ className = "", children }: { className?: string; children: React.ReactNode }) => (
   <span
     className={`inline-flex h-7 items-center justify-center rounded-full border border-white/90 bg-white/70 text-[#5a5f58] shadow-[0_0_0_0.5px_rgba(18,20,18,0.1),0_1px_3px_rgba(18,20,18,0.08),inset_0_1px_0_#fff] ${className}`}
   >
@@ -168,13 +159,7 @@ const Icon = ({ d, className = "" }: { d: string; className?: string }) => (
 );
 
 /** A macOS browser window in the current style: large radius, floating glass controls */
-const MacWindow = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => (
+const MacWindow = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <div className="overflow-hidden rounded-[18px] border border-ink/10 bg-surface shadow-[0_30px_60px_-22px_rgba(18,20,18,0.28),0_10px_20px_-12px_rgba(18,20,18,0.14)]">
     <div className="relative flex h-11 items-center gap-2.5 border-b border-ink/[0.07] bg-gradient-to-b from-[#FBFBF9] to-[#F3F4F0] px-3.5">
       <span className="mr-1.5 flex gap-2">
@@ -238,12 +223,10 @@ export const WebShowcase = ({
           <button
             type="button"
             className="relative block aspect-[1152/560] w-full cursor-zoom-in bg-paper"
-            onClick={() =>
-              onOpen(active.src, `${windowTitle}: ${active.title}`)
-            }
+            onClick={() => onOpen(active.src, `${windowTitle}: ${active.title}`)}
             aria-label={`Enlarge ${active.title} screenshot`}
           >
-            <Stack screens={screens} index={index} alt={windowTitle} />
+            <Stack screens={screens} index={index} alt={windowTitle} width={2304} height={1120} />
           </button>
         </MacWindow>
       </div>
@@ -292,7 +275,7 @@ export const PhoneShowcase = ({
             onClick={() => onOpen(active.src, `${appName}: ${active.title}`)}
             aria-label={`Enlarge ${active.title} screenshot`}
           >
-            <Stack screens={screens} index={index} alt={appName} />
+            <Stack screens={screens} index={index} alt={appName} width={780} height={1648} />
             <span className="absolute left-1/2 top-[9px] h-[11px] w-[11px] -translate-x-1/2 rounded-full bg-ink" />
           </button>
         </div>

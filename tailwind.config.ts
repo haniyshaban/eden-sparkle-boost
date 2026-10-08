@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"Hanken Grotesk"', "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ['"Hanken Grotesk Variable"', '"Hanken Grotesk"', "ui-sans-serif", "system-ui", "sans-serif"],
         // "font-inter" is used in App.tsx; it now maps to the site font
-        inter: ['"Hanken Grotesk"', "ui-sans-serif", "system-ui", "sans-serif"],
+        inter: ['"Hanken Grotesk Variable"', '"Hanken Grotesk"', "ui-sans-serif", "system-ui", "sans-serif"],
       },
       colors: {
         /* Eden palette */
